@@ -1,7 +1,7 @@
 import { Typewriter } from "react-simple-typewriter";
 const Announcements = () => {
   return (
-    <div className="bg-[#e9cfe2] text-white text-[18px] h-[30px] flex items-center justify-center">
+    <div className="bg-[#e9acd9] text-white text-[18px] font-semibold h-[30px] flex items-center justify-center">
       <Typewriter
         words={["Beauty", "Bliss", "Everything", "on", "Discount", "20%!"]}
         loop={1000}
