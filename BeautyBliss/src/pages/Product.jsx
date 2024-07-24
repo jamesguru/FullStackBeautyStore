@@ -1,8 +1,8 @@
 import { FaMinus, FaPlus } from "react-icons/fa";
-
+import StarRatings from "react-star-ratings";
 const Product = () => {
   return (
-    <div className="h-[100vh] flex justify-stretch p-[30px]">
+    <div className="h-auto flex justify-stretch p-[30px]">
       <div className="flex-1 h-[500px] w-[600px]">
         <img src="/lotion2.jpg" alt="" />
       </div>
@@ -23,9 +23,21 @@ const Product = () => {
           fruits
         </span>
 
+        <div className="flex items-center my-6">
+          <StarRatings
+            numberOfStars={5}
+            rating={2}
+            isSelectable={true}
+            starRatedColor="yellow"
+            starDimension="30px"
+            starSpacing="2px"
+          />
+          <span>(6)</span>
+        </div>
+
         <div className="h-52 w-96 border-2 border-gray-300 rounded-lg shadow-md my-4 p-6 bg-white">
           <h2 className="flex items-center justify-center font-semibold text-lg text-gray-700 mb-4">
-            What is in the Box?
+            WHAT’S IN THE BOX
           </h2>
           <hr className="mb-4" />
           <span className="block text-gray-600 text-base">
@@ -46,6 +58,49 @@ const Product = () => {
         <button className="bg-[#1e1e1e] p-[10px] w-[200px] text-white cursor-pointer">
           Add to Cart
         </button>
+
+        <hr className="my-6" />
+
+        <div className="flex flex-col">
+          <h2 className="font-semibold text-[18px]">Reviews</h2>
+          <div className="flex items-center">
+            <StarRatings
+              numberOfStars={5}
+              rating={2}
+              isSelectable={true}
+              starRatedColor="yellow"
+              starDimension="30px"
+              starSpacing="2px"
+            />
+            <span className="font-semibold mx-[20px]">James K.</span>
+            <span>Good Product.</span>
+          </div>
+          <div className="flex items-center">
+            <StarRatings
+              numberOfStars={5}
+              rating={5}
+              isSelectable={true}
+              starRatedColor="yellow"
+              starDimension="30px"
+              starSpacing="2px"
+            />
+            <span className="font-semibold mx-[20px]">Allan</span>
+            <span>Nice.</span>
+          </div>
+
+          <div className="flex items-center">
+            <StarRatings
+              numberOfStars={5}
+              rating={3}
+              isSelectable={true}
+              starRatedColor="yellow"
+              starDimension="30px"
+              starSpacing="2px"
+            />
+            <span className="font-semibold mx-[20px]">Kelly</span>
+            <span>Nice.</span>
+          </div>
+        </div>
       </div>
     </div>
   );

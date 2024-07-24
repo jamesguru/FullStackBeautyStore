@@ -24,9 +24,11 @@ const Navbar = () => {
             <ShoppingBasketIcon className="text-[#e455c5]" />
           </Badge>
         </Link>
-        <button className="bg-[#ef93db] p-[10px] ml-[20px] text-white w-[150px] cursor-pointer">
-          Login
-        </button>
+        <Link to="/login">
+          <button className="bg-[#ef93db] p-[10px] ml-[20px] text-white w-[150px] cursor-pointer">
+            Login
+          </button>
+        </Link>
       </div>
     </div>
   );
