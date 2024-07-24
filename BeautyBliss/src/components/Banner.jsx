@@ -1,10 +1,10 @@
 const Banner = () => {
   return (
-    <div className="relative bg-[url('/beautybanner5.jpg')] bg-no-repeat bg-cover bg-center h-[75vh] px-[200px]">
-      <div className="absolute inset-0 bg-black opacity-60"></div>
+    <div className="relative bg-[url('/beautybanner.jpg')] bg-no-repeat bg-cover bg-center h-[75vh] px-[200px]">
+      <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative flex flex-col text-white w-[50%] pt-[10%]">
         <span className="text-[30px] mt-3">Your skin, Our pride!</span>
-        <h1 className="text-[38px] mt-3">
+        <h1 className="text-3xl mt-3">
           LET`S MAKE YOUR SKIN FLOURISH WITH OUR PRODUCTS
         </h1>
         <div className="flex items-center mt-[20px]">

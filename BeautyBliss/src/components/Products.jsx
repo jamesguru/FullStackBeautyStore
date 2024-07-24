@@ -1,5 +1,4 @@
 import StarRatings from "react-star-ratings";
-
 const Products = () => {
   return (
     <div className="flex items-center flex-wrap mx-[20px] my-[30px]">
