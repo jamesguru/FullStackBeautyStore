@@ -15,6 +15,8 @@ const Products = () => {
           starDimension="30px"
           starSpacing="2px"
         />
+
+        <span className="bg-[#0f0e0e] text-[#bfa75d] font-semibold my-[5px] p-[5px]">Wholesale Available</span>
       </div>
       <div className="flex flex-col h-[500px] w-[250px] m-[20px]">
         <img src="/foundation.jpg" height="250px" width="350px" alt="" />
@@ -29,6 +31,7 @@ const Products = () => {
           starDimension="30px"
           starSpacing="2px"
         />
+        <span className="bg-[#0f0e0e] text-[#bfa75d] font-semibold my-[5px] p-[5px]">Wholesale Available</span>
       </div>
       <div className="flex flex-col h-[500px] w-[250px] m-[20px]">
         <img src="/serum1.jpg" height="250px" width="350px" alt="" />
@@ -57,6 +60,7 @@ const Products = () => {
           starDimension="30px"
           starSpacing="2px"
         />
+        <span className="bg-[#0f0e0e] text-[#bfa75d] font-semibold my-[5px] p-[5px]">Wholesale Available</span>
       </div>
       <div className="flex flex-col h-[500px] w-[250px] m-[20px]">
         <img src="/lotion3.jpg" height="250px" width="350px" alt=""/>
@@ -85,6 +89,7 @@ const Products = () => {
           starDimension="30px"
           starSpacing="2px"
         />
+        <span className="bg-[#0f0e0e] text-[#bfa75d] font-semibold my-[5px] p-[5px]">Wholesale Available</span>
       </div>
       <div className="flex flex-col h-[500px] w-[250px] m-[20px]">
         <img src="/foundation.jpg" height="250px" width="350px" alt="" />

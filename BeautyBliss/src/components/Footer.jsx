@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 border-t border-[#e9acd9] pt-4 text-center">
-        <p>&copy; 2024 BloodBridge. All rights reserved.</p>
+        <p>&copy; 2024 BeautyBliss. All rights reserved.</p>
         <div className="flex justify-center space-x-4 mt-4">
           <a href="#" className="hover:text-red-400">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

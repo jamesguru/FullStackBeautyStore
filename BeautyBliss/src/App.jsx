@@ -8,6 +8,7 @@ import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import ProductList from "./pages/ProductList";
 
 function App() {
   const Layout = () => {
@@ -48,6 +49,10 @@ function App() {
         {
           path: "/create-account",
           element: <Register />,
+        },
+        {
+          path: "/products",
+          element: <ProductList />,
         }
       ],
     },
