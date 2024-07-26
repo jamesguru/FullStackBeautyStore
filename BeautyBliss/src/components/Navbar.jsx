@@ -1,10 +1,11 @@
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Badge from "@mui/material/Badge";
+
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-between h-[100px]">
+    <div className="flex items-center justify-between h-[100px] bg-white shadow-md px-6">
       <div className="cursor-pointer m-2">
         <Link to="/">
           <img src="/blisslogo1.png" height="150px" width="200px" alt="" />
@@ -18,16 +19,15 @@ const Navbar = () => {
         />
         <FaSearch className="text-[20px] cursor-pointer" />
       </div>
-      <div className="flex items-center mr-[20px]">
-        <Link to="/cart">
+      <div className="flex items-center space-x-4">
+        <Link to="/cart" className="relative group">
           <Badge badgeContent={5} color="secondary">
-            <ShoppingBasketIcon className="text-[#e455c5]" />
+            <ShoppingBasketIcon className="text-[#e455c5] group-hover:text-pink-600 transition duration-300" />
           </Badge>
         </Link>
-        <Link to="/login">
-          <button className="bg-[#ef93db] p-[10px] ml-[20px] text-white w-[150px] cursor-pointer">
-            Login
-          </button>
+        <Link to="/login" className="flex items-center space-x-2 border border-pink-300 p-2 rounded-lg hover:bg-pink-100 transition duration-300">
+          <FaUser className="text-[#e455c5] hover:text-pink-600 transition duration-300" />
+          <span className="text-[#e455c5] hover:text-pink-600 transition duration-300 font-semibold">Login</span>
         </Link>
       </div>
     </div>
