@@ -110,11 +110,26 @@ const Menu = () => {
         </Link>
 
         <hr className="w-full my-[20px] border-gray-300" />
-
-        <li className="flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100">
-          <FaElementor className="mr-[15px] text-[#ef93db] " />
-          Elements
-        </li>
+        <Link to="/banners" onClick={() => handleLinkClick("/banners")}>
+          <li
+            className={`flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100
+            
+              ${
+                activeLink === "/banners"
+                  ? "bg-[#ef93db] p-[10px] w-[200px] text-white"
+                  : ""
+              }
+            
+            `}
+          >
+            <FaElementor
+              className={`mr-[15px] text-[#ef93db]  ${
+                activeLink === "/banners" ? "text-white" : "text-[#ef93db]"
+              }`}
+            />
+            Banners
+          </li>
+        </Link>
 
         <li className="flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100">
           <FaCog className="mr-[15px] text-[#ef93db] " />

@@ -7,6 +7,7 @@ import Orders from "./pages/Orders";
 import Product from "./pages/Product";
 import NewProduct from "./pages/NewProduct";
 import Login from "./pages/Login";
+import Banner from "./pages/Banner";
 
 function App() {
   const Layout = () => {
@@ -50,6 +51,10 @@ function App() {
         {
           path: "/newproduct",
           element: <NewProduct />,
+        },
+        {
+          path: "/banners",
+          element: <Banner />,
         },
       ],
     },
