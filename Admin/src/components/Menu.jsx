@@ -1,6 +1,5 @@
 import {
   FaBox,
-  FaCalendarAlt,
   FaChartBar,
   FaClipboard,
   FaClipboardList,
@@ -33,8 +32,8 @@ const Menu = () => {
             `}
           >
             <FaHome
-              className={`mr-[15px] text-white ${
-                activeLink === "/" ? "text-white" : "text-red-500"
+              className={`mr-[15px] text-[#ef93db]  ${
+                activeLink === "/" ? "text-white" : "text-[#ef93db]"
               }`}
             />
             Home
@@ -47,69 +46,68 @@ const Menu = () => {
 
         <hr className="w-full my-[20px] border-gray-300" />
 
-        <Link to="/users" onClick={() => handleLinkClick("/donors")}>
+        <Link to="/users" onClick={() => handleLinkClick("/users")}>
           <li
             className={`flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100
             
-            ${
-              activeLink === "/users"
-                ? "bg-red-300 p-[10px] w-[200px] text-white"
-                : ""
-            }
+              ${
+                activeLink === "/users"
+                  ? "bg-[#ef93db] p-[10px] w-[200px] text-white"
+                  : ""
+              }
             
             `}
           >
             <FaBox
               className={`mr-[15px] text-[#ef93db]  ${
-                activeLink === "/users" ? "text-white" : "text-red-500"
+                activeLink === "/users" ? "text-white" : "text-[#ef93db]"
               }`}
             />
             Users
           </li>
         </Link>
 
-        <Link to="/products" onClick={() => handleLinkClick("/prospects")}>
+        <Link to="/products" onClick={() => handleLinkClick("/products")}>
           <li
             className={`flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100
             
-            ${
-              activeLink === "/products"
-                ? "bg-red-300 p-[10px] w-[200px] text-white"
-                : ""
-            }
+              ${
+                activeLink === "/products"
+                  ? "bg-[#ef93db] p-[10px] w-[200px] text-white"
+                  : ""
+              }
             
             `}
           >
             <FaUsers
               className={`mr-[15px] text-[#ef93db]  ${
-                activeLink === "/products" ? "text-white" : "text-red-500"
+                activeLink === "/products" ? "text-white" : "text-[#ef93db]"
               }`}
             />
             Products
           </li>
         </Link>
 
-        <Link to="/orders" onClick={() => handleLinkClick("/prospects")}>
+        <Link to="/orders" onClick={() => handleLinkClick("/orders")}>
           <li
             className={`flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100
             
-            ${
-              activeLink === "/orders"
-                ? "bg-red-300 p-[10px] w-[200px] text-white"
-                : ""
-            }
+              ${
+                activeLink === "/orders"
+                  ? "bg-[#ef93db] p-[10px] w-[200px] text-white"
+                  : ""
+              }
             
             `}
           >
             <FaClipboardList
               className={`mr-[15px] text-[#ef93db]  ${
-                activeLink === "/orders" ? "text-white" : "text-red-500"
+                activeLink === "/orders" ? "text-white" : "text-[#ef93db]"
               }`}
             />
             Orders
           </li>
         </Link>
-
 
         <hr className="w-full my-[20px] border-gray-300" />
 
@@ -138,9 +136,9 @@ const Menu = () => {
           All logs
         </li>
 
-        <li className="flex items-center text-[20px] cursor-pointer mt-[20px] transition-colors duration-100">
-          <FaCalendarAlt className="mr-[15px] text-[#ef93db] " />
-          Calendar
+        <li className=" flex items-center justify-between text-[20px] cursor-pointer mt-[20px] transition-colors duration-100 shadow-lg">
+        <FaUser className="mr-2 text-[#ef93db]" />
+        <span>Logout</span>
         </li>
       </ul>
     </div>

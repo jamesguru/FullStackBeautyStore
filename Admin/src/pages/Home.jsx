@@ -1,5 +1,4 @@
-import { Gauge } from "@mui/x-charts/Gauge";
-import { PieChart } from "@mui/x-charts/PieChart";
+import { LineChart } from "@mui/x-charts/LineChart";
 import { DataGrid } from "@mui/x-data-grid";
 
 const Home = () => {
@@ -53,34 +52,33 @@ const Home = () => {
   const totalRevenue = orders.reduce((sum, order) => sum + order.amount, 0);
 
   return (
-    <div className="flex justify-between h-[100vh]">
-      <div className="flex flex-col">
-        <div className="flex flex-wrap">
-          <div className="bg-gray-50 h-[100] m-[30px] w-[350px] shadow-xl">
-            <div className="h-[200px] w-[200px]">
-              <Gauge
-                value={75}
-                startAngle={0}
-                endAngle={360}
-                innerRadius="80%"
-                outerRadius="100%"
-              />
+    <div className="flex justify-between h-screen p-2 bg-gray-200">
+      <div className="flex flex-col w-2/3">
+        <div className="flex">
+          <div className="bg-white h-52 m-5 w-60 shadow-xl rounded-lg flex flex-col items-center justify-center">
+            <div className="h-32 w-32 m-5 border-[10px] border-blue-400 border-solid rounded-full flex items-center justify-center">
+              <h2 className="font-bold text-2xl">699</h2>
             </div>
-            <h2 className="font-semibold text-[18px] m-[40px]">Products</h2>
+            <h2 className="font-semibold text-xl">Products</h2>
           </div>
 
-          <div className="bg-gray-50 h-[300px] m-[30px] w-[350px] shadow-xl">
-            <div className="h-[200px] w-[200px] m-[30px] border-[20px] border-red-400 border-solid rounded-full">
-              <div className="flex items-center justify-center m-[30px]">
-                <h2 className="font-bold text-[25px] m-[40px]">100</h2>
-              </div>
-              <h2 className="font-semibold text-[18px] m-[40px]">Orders</h2>
+          <div className="bg-white h-52 m-5 w-60 shadow-xl rounded-lg flex flex-col items-center justify-center">
+            <div className="h-32 w-32 m-5 border-[10px] border-red-400 border-solid rounded-full flex items-center justify-center">
+              <h2 className="font-bold text-2xl">100</h2>
             </div>
+            <h2 className="font-semibold text-xl">Orders</h2>
+          </div>
+
+          <div className="bg-white h-52 m-5 w-60 shadow-xl rounded-lg flex flex-col items-center justify-center">
+            <div className="h-32 w-32 m-5 border-[10px] border-slate-400 border-solid rounded-full flex items-center justify-center">
+              <h2 className="font-bold text-2xl">200</h2>
+            </div>
+            <h2 className="font-semibold text-xl">Users</h2>
           </div>
         </div>
-        <div className="flex items-center"></div>
-        <div className="m-3">
-          <h2 className="font-semibold text-[18px] m-[30px]">Recent Orders</h2>
+
+        <div className="bg-white m-5 p-5 shadow-xl rounded-lg">
+          <h2 className="font-semibold text-xl mb-5">Recent Orders</h2>
           <div style={{ height: 300, width: "100%" }}>
             <DataGrid
               rows={orders}
@@ -93,45 +91,28 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex flex-col bg-gray-100 m-[5px] h-[800px] w-[300px] shadow-xl">
-        <div className="bg-gray-50 h-[100px] m-[5px] w-[300px] shadow-xl flex items-center justify-center">
-          <h2 className="font-bold text-[25px]">
-            Total Revenue: ${totalRevenue}
-          </h2>
+      <div className="flex flex-col w-1/3 bg-white p-5 shadow-xl rounded-lg">
+        <div className="bg-gray-50 p-5 mb-5 shadow-xl rounded-lg flex flex-col items-center">
+          <h2 className="font-bold text-2xl">Total Revenue: ${totalRevenue}</h2>
         </div>
-        <div className="bg-gray-50 h-[100px] m-[5px] w-[300px] shadow-xl flex items-center justify-center">
-          <h2 className="font-bold text-[25px]">Total Losses: ${0}</h2>
-        </div>
-        <div className="m-[40px]">
-          <h3 className="font-bold">Recent Users</h3>
-          <ul>
-            <li>1. James Lisley</li>
-            <li>2. Joel Lisper</li>
-            <li>3. Jane Doe</li>
-            <li>4. Liz Doe</li>
-          </ul>
+        <div className="bg-gray-50 p-5 mb-5 shadow-xl rounded-lg flex flex-col items-center">
+          <h2 className="font-bold text-2xl">Total Losses: $0</h2>
         </div>
 
-        <PieChart
-          series={[
-            {
-              data: [
-                { id: 0, value: 10, label: "Toners" },
-                { id: 1, value: 15, label: "Serums" },
-                { id: 3, value: 20, label: "Relaxers" },
-                { id: 4, value: 30, label: "Creams" },
-              ],
-              innerRadius: 50,
-              outerRadius: 70,
-              paddingAngle: 7,
-              cornerRadius: 5,
-              startAngle: -90,
-              endAngle: 180,
-              cx: 150,
-              cy: 100,
-            },
-          ]}
-        />
+        <div className="bg-gray-50 h-[400px] w-[350px] p-5 shadow-xl rounded-lg flex items-center justify-center">
+          <LineChart
+            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+            series={[
+              {
+                data: [2, 5.5, 2, 8.5, 1.5, 5],
+              },
+            ]}
+            height={350}
+        
+            margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+            grid={{ vertical: true, horizontal: true }}
+          />
+        </div>
       </div>
     </div>
   );

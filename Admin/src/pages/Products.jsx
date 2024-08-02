@@ -1,9 +1,8 @@
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
 
 const Products = () => {
-
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     { field: "name", headerName: "Product Name", width: 200 },
@@ -129,8 +128,12 @@ const Products = () => {
     <div className="w-[70vw]">
       <div className="flex items-center justify-between m-[30px]">
         <h1 className="m-[20px] text-[20px]">All Products</h1>
+        <Link to="/newproduct">
+          <button className="bg-[#1e1e1e] p-[10px] font-semibold text-white cursor-pointer">
+            Create
+          </button>
+        </Link>
       </div>
-
       <div className="m-[30px]">
         <DataGrid rows={rows} columns={columns} checkboxSelection />
       </div>

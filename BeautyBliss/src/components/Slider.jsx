@@ -24,8 +24,7 @@ const Slider = () => {
         <div className="relative flex items-center justify-center">
           <h2 className="font-semibold text-[30px] text-white">Lotions</h2>
         </div>
-      </div>
-      
+      </div>   
     </div>
   );
 };
