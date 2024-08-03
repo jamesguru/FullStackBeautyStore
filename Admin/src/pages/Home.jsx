@@ -1,55 +1,41 @@
 import { LineChart } from "@mui/x-charts/LineChart";
-import { DataGrid } from "@mui/x-data-grid";
 
 const Home = () => {
-  // Sample data for recent orders
   const orders = [
     {
       id: 1,
-      orderId: "001",
-      customer: "John Doe",
-      amount: 100,
-      date: "2023-07-01",
+      name: "John Doe",
+      total: 200,
+      status: "Approved",
     },
     {
       id: 2,
-      orderId: "002",
-      customer: "Jane Smith",
-      amount: 150,
-      date: "2023-07-02",
+      name: "Jane Smith",
+      total: 50,
+      status: "Pending",
     },
     {
       id: 3,
-      orderId: "003",
-      customer: "Sam Brown",
-      amount: 200,
-      date: "2023-07-03",
+      name: "Michael Johnson",
+      total: 400,
+      status: "Pending",
     },
     {
       id: 4,
-      orderId: "004",
-      customer: "Lisa White",
-      amount: 250,
-      date: "2023-07-04",
+      name: "Emily Brown",
+      total: 1600,
+      status: "Approved",
     },
     {
       id: 5,
-      orderId: "005",
-      customer: "Paul Green",
-      amount: 300,
-      date: "2023-07-05",
+      name: "Walter James",
+      total: 600,
+      status: "Approved",
     },
   ];
 
-  const columns = [
-    { field: "orderId", headerName: "Order ID", width: 100 },
-    { field: "customer", headerName: "Customer", width: 150 },
-    { field: "amount", headerName: "Amount ($)", width: 100 },
-    { field: "date", headerName: "Date", width: 150 },
-  ];
-
   // Calculate total revenue
-  const totalRevenue = orders.reduce((sum, order) => sum + order.amount, 0);
+  //const totalRevenue = orders.reduce((sum, order) => sum + order.amount, 0);
 
   return (
     <div className="flex justify-between h-screen p-2 bg-gray-200">
@@ -77,23 +63,38 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="bg-white m-5 p-5 shadow-xl rounded-lg">
-          <h2 className="font-semibold text-xl mb-5">Recent Orders</h2>
-          <div style={{ height: 300, width: "100%" }}>
-            <DataGrid
-              rows={orders}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-              checkboxSelection
-            />
-          </div>
+        <div className="bg-white m-5 p-5 rounded-lg">
+         
+            <div className="p-6 bg-white rounded-md">
+              <h3 className="text-lg font-bold mb-4">Latest transactions</h3>
+              <table className="min-w-full table-auto">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="py-2 px-4">Customer</th>
+                    <th className="py-2 px-4">Amount</th>
+                    <th className="py-2 px-4">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order.id} className="border-b">
+                      <td className="py-2 px-4">{order.name}</td>
+                      <td className="py-2 px-4">$ {order.total}</td>
+                      <td className={`py-2 px-4 font-semibold
+                        ${order.status === 'Pending'  ? 'text-red-500' : 'text-green-500' }
+                        `}>{order.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          
         </div>
       </div>
 
       <div className="flex flex-col w-1/3 bg-white p-5 shadow-xl rounded-lg">
         <div className="bg-gray-50 p-5 mb-5 shadow-xl rounded-lg flex flex-col items-center">
-          <h2 className="font-bold text-2xl">Total Revenue: ${totalRevenue}</h2>
+          <h2 className="font-bold text-2xl">Total Revenue: $200,000</h2>
         </div>
         <div className="bg-gray-50 p-5 mb-5 shadow-xl rounded-lg flex flex-col items-center">
           <h2 className="font-bold text-2xl">Total Losses: $0</h2>
@@ -108,7 +109,6 @@ const Home = () => {
               },
             ]}
             height={350}
-        
             margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
             grid={{ vertical: true, horizontal: true }}
           />
