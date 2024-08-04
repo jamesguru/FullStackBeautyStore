@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 
+
 // REGISTER USER
 // route POST /api/v1/auth/register
 //@access Public
@@ -40,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (user && user.matchPassword(password)) {
+  if (user && await(user.matchPassword(password))) {
     generateToken(res, user._id);
     res.status(201).json({
       _id: user._id,
