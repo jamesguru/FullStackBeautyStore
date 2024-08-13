@@ -57,8 +57,8 @@ const Account = () => {
               <label className="block text-gray-700 text-sm font-semibold">Confirm New Password</label>
               <input type="password" className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
-
-            <button type="submit" className="w-full bg-[#1e1e1e] text-white p-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Update Password</button>
+            <button type="submit" className="w-full bg-[#1e1e1e] text-white p-3 rounded-lg shadow-md hover:bg-gray-500 transition duration-300">Update Password</button>
+            <button type="submit" className="w-full bg-red-500 text-white p-3 rounded-lg shadow-md hover:bg-gray-500 transition duration-300">Logout</button>
           </form>
         </div>
       </div>

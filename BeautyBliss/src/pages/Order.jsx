@@ -1,55 +1,47 @@
+import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { userRequest } from "../requestMethods";
+import { useSelector } from "react-redux";
+import StarRating from "react-star-ratings";
 
 const Order = () => {
-  const orders = [
-    {
-      items: [
-        {
-          image: "/lotion2.jpg",
-          name: "Garnier Even & Matte Vitamin C Cleansing Foam",
-          quantity: "1 x 500ml",
-          price: "$100",
-        },
-      ],
-      shipping: {
-        name: "John Doe",
-        address: "123 Main Street, Apt 4B",
-        city: "Cityville, ST 12345",
-        country: "United States",
-      },
-      paymentMethod: "Credit Card (Visa ending in 1234)",
-      subtotal: "$100",
-      shippingCost: "$10",
-      total: "$110",
-    },
-    {
-      items: [
-        {
-          image: "/lotion1.jpg",
-          name: "Pantene Pro-V Daily Moisture Renewal Shampoo",
-          quantity: "2 x 250ml",
-          price: "$50",
-        },
-        {
-          image: "/lotion2.jpg",
-          name: "Pantene Pro-V Daily Moisture Renewal Conditioner",
-          quantity: "2 x 250ml",
-          price: "$60",
-        },
-      ],
-      shipping: {
-        name: "Jane Smith",
-        address: "456 Elm Street, Suite 12",
-        city: "Townsville, TS 54321",
-        country: "United States",
-      },
-      paymentMethod: "Credit Card (Mastercard ending in 5678)",
-      subtotal: "$110",
-      shippingCost: "$15",
-      total: "$125",
-    },
-  ];
+  const user = useSelector((state) => state.user);
+  const [orders, setOrders] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+
+  useEffect(() => {
+    const getUserOrder = async () => {
+      try {
+        const res = await userRequest.get(
+          `/orders/find/${user.currentUser._id}`
+        );
+        setOrders(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getUserOrder();
+  }, [user]);
+
+  const handleRating = async(id) =>{
+    const singleRating = {
+      star: rating,
+      name: user.currentUser.name,
+      postedBy: user.currentUser_id,
+      comment: comment,
+    };
+    try {
+      await userRequest.put(`/products/ratings/${id}`, singleRating);
+      setComment("")
+      setRating(0);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -69,22 +61,47 @@ const Order = () => {
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-xl font-semibold mb-2">Items Ordered</h3>
                 <div className="flex flex-col space-y-4">
-                  {order.items.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between border-b border-gray-200 pb-4"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-24 h-24 object-cover rounded-md"
-                      />
-                      <div className="flex-1 ml-4">
-                        <h4 className="text-lg font-semibold">{item.name}</h4>
-                        <p className="text-gray-600">{item.quantity}</p>
+                  {order.products.map((item, idx) => (
+                    <div className="flex flex-col" key={idx}>
+                      <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+                        <img
+                          src={item.img}
+                          alt={item.title}
+                          className="w-24 h-24 object-cover rounded-md"
+                        />
+                        <div className="flex-1 ml-4">
+                          <h4 className="text-lg font-semibold">
+                            {item.title}
+                          </h4>
+                          <p className="text-gray-600">{item.quantity}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-lg font-bold">{item.price}</p>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-lg font-bold">{item.price}</p>
+
+                      <div className="flex flex-col">
+                        <h3 className="my-3">Rate this product</h3>
+                        <StarRating
+                          numberOfStars={5}
+                          starDimension="25px"
+                          rating={rating}
+                          isSelectable={true}
+                          starRatedColor={"#FF7BA9"}
+                          changeRating={(newRating) => {
+                            setRating(newRating);
+                          }}
+                        />
+                        <textarea
+                          name=""
+                          id=""
+                          onChange={(e) => setComment(e.target.value)}
+                          className="p-[10px] w-[300px] mt-3"
+                          placeholder="leave a message"
+                        ></textarea>
+                        <button className="bg-[#1e1e1e] mt-3 w-[200px] p-[5px] text-white" onClick={() => handleRating(item._id)}>
+                          Submit
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -95,30 +112,25 @@ const Order = () => {
                 <h3 className="text-xl font-semibold mb-2">
                   Shipping Information
                 </h3>
-                <p className="text-gray-600">{order.shipping.name}</p>
-                <p className="text-gray-600">{order.shipping.address}</p>
-                <p className="text-gray-600">{order.shipping.city}</p>
-                <p className="text-gray-600">{order.shipping.country}</p>
+                <p className="text-gray-600">{order.email}</p>
+                <p className="text-gray-600">{order?.phone}</p>
+                <p className="text-gray-600">{order.name}</p>
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-xl font-semibold mb-2">Payment Method</h3>
-                <p className="text-gray-600">{order.paymentMethod}</p>
+                <p className="text-gray-600">VISA</p>
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-xl font-semibold mb-2">Order Summary</h3>
                 <div className="flex justify-between mb-2">
                   <span className="text-lg font-medium">Subtotal:</span>
-                  <span className="text-lg font-semibold">
-                    {order.subtotal}
-                  </span>
+                  <span className="text-lg font-semibold">{order.total}</span>
                 </div>
                 <div className="flex justify-between mb-2">
                   <span className="text-lg font-medium">Shipping:</span>
-                  <span className="text-lg font-semibold">
-                    {order.shippingCost}
-                  </span>
+                  <span className="text-lg font-semibold">$10</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-lg font-medium">Total:</span>

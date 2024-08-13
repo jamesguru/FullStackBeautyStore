@@ -3,9 +3,11 @@ import asyncHandler from "express-async-handler";
 
 // CREATE A PRODUCT
 const createProduct = asyncHandler(async (req, res) => {
+ 
   const newProduct = Product(req.body);
   const product = await newProduct.save();
   if (product) {
+    console.log(product)
     res.status(200).json(product);
   } else {
     res.status(400);

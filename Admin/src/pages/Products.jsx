@@ -1,20 +1,41 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import { useEffect } from "react";
+import { userRequest } from "../requestMethods.js";
+import { useState } from "react";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    { field: "name", headerName: "Product Name", width: 200 },
+    { field: "_id", headerName: "ID", width: 90 },
+    {
+      field: "product",
+      headerName: "Product",
+      width: 300,
+      renderCell: (params) => {
+        return (
+          <div className="flex items-center">
+            <img
+              className="h-12 w-12 rounded-full object-cover mr-2"
+              src={params.row.img}
+              alt=""
+              height="100px"
+              width="100px"
+            />
+            {params.row.title}
+          </div>
+        );
+      },
+    },
     { field: "brand", headerName: "Brand", width: 150 },
-    { field: "category", headerName: "Category", width: 150 },
-    { field: "price", headerName: "Price ($)", width: 130 },
-    { field: "stock", headerName: "In Stock", width: 100 },
+    { field: "originalPrice", headerName: "Price ($)", width: 100 },
+    { field: "inStock", headerName: "In Stock", width: 100 },
 
     {
       field: "edit",
       headerName: "Edit",
-      width: 150,
+      width: 100,
       renderCell: (params) => {
         return (
           <>
@@ -30,7 +51,7 @@ const Products = () => {
     {
       field: "delete",
       headerName: "Delete",
-      width: 150,
+      width: 100,
       renderCell: () => {
         return (
           <>
@@ -41,88 +62,17 @@ const Products = () => {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      name: "Hydrating Facial Cleanser",
-      brand: "CeraVe",
-      category: "Cleanser",
-      price: 15.99,
-      stock: 20,
-    },
-    {
-      id: 2,
-      name: "Retinol Serum",
-      brand: "The Ordinary",
-      category: "Serum",
-      price: 9.99,
-      stock: 35,
-    },
-    {
-      id: 3,
-      name: "Daily Moisturizing Lotion",
-      brand: "Aveeno",
-      category: "Moisturizer",
-      price: 8.99,
-      stock: 50,
-    },
-    {
-      id: 4,
-      name: "Ultra Light Sunscreen SPF 50",
-      brand: "Neutrogena",
-      category: "Sunscreen",
-      price: 12.99,
-      stock: 40,
-    },
-    {
-      id: 5,
-      name: "Vitamin C Serum",
-      brand: "TruSkin",
-      category: "Serum",
-      price: 19.99,
-      stock: 25,
-    },
-    {
-      id: 6,
-      name: "Soothing Facial Toner",
-      brand: "Thayers",
-      category: "Toner",
-      price: 10.99,
-      stock: 30,
-    },
-    {
-      id: 7,
-      name: "Anti-Aging Eye Cream",
-      brand: "Olay",
-      category: "Eye Cream",
-      price: 24.99,
-      stock: 15,
-    },
-    {
-      id: 8,
-      name: "Exfoliating Scrub",
-      brand: "St. Ives",
-      category: "Exfoliant",
-      price: 6.99,
-      stock: 45,
-    },
-    {
-      id: 9,
-      name: "Oil-Free Acne Wash",
-      brand: "Neutrogena",
-      category: "Cleanser",
-      price: 7.99,
-      stock: 28,
-    },
-    {
-      id: 10,
-      name: "Hydro Boost Water Gel",
-      brand: "Neutrogena",
-      category: "Moisturizer",
-      price: 18.99,
-      stock: 22,
-    },
-  ];
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await userRequest.get("/products");
+        setProducts(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  }, []);
 
   return (
     <div className="w-[70vw]">
@@ -135,7 +85,12 @@ const Products = () => {
         </Link>
       </div>
       <div className="m-[30px]">
-        <DataGrid rows={rows} columns={columns} checkboxSelection />
+        <DataGrid
+          rows={products}
+          getRowId={(row) => row._id}
+          columns={columns}
+          checkboxSelection
+        />
       </div>
     </div>
   );

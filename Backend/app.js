@@ -4,8 +4,10 @@ import authRoute from "./routes/auth.route.js";
 import productRoute from "./routes/product.route.js";
 import orderRoute from "./routes/order.route.js";
 import userRoute from "./routes/user.route.js";
+import cartRoute from "./routes/cart.route.js";
+import stripeRoute from "./routes/stripe.js";
 import cors from "cors";
-import { notFound, errorHandler } from "./middlewares/error.middleware.js";
+import {notFound, errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
 export default app;
@@ -25,6 +27,8 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/products", productRoute);
 app.use("/api/v1/orders", orderRoute);
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/carts", cartRoute);
+app.use("/api/v1/stripe", stripeRoute);
 
 // ERROR MIDDLEWARES
 app.use(notFound);

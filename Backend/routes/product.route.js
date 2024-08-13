@@ -14,7 +14,7 @@ const router = express.Router();
 router.post("/", createProduct);
 
 //GET ALL PRODUCTS ROUTE
-router.get("/",protect, getAllProducts);
+router.get("/", getAllProducts);
 
 //GET ONE PRODUCT ROUTE
 router.get("/find/:id", getProduct);
@@ -23,7 +23,7 @@ router.get("/find/:id", getProduct);
 router.put("/:id", updateProduct);
 
 // RATING PRODUCT ROUTE
-router.post("/ratings/:productId", ratingProduct);
+router.put("/ratings/:productId", ratingProduct);
 
 //DELETE PRODUCT ROUTE
 router.delete("/:id", deleteProduct);

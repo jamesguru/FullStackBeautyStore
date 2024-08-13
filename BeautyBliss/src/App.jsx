@@ -57,7 +57,7 @@ function App() {
           element: <Register />,
         },
         {
-          path: "/products",
+          path: "/products/:search",
           element: <ProductList />,
         }, {
           path: "/myAccount",

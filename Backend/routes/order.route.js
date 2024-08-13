@@ -20,6 +20,6 @@ router.get("/stats", getOrderStats);
 // DELETE ORDER ROUTE
 router.delete("/:id", deleteOrder);
 //GET USER ORDERS ROUTE
-router.post("/find/:id", getUserOrder);
+router.get("/find/:id", getUserOrder);
 
 export default router;
