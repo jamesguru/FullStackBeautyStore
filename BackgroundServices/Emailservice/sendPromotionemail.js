@@ -12,8 +12,6 @@ const sendPromotionEmail = async () => {
     { $sample: { size: 5 } }, // Select 5 random products
   ]);
   
- 
-
   if (products.length > 0) {
     for (let user of users) {
       ejs.renderFile(

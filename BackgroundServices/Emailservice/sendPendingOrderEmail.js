@@ -6,7 +6,7 @@ import Order from "../models/order.model.js";
 dotenv.config();
 
 const sendPendingOrderEmail = async () => {
-  const orders = await Order.find({ status: 1 });
+  const orders = await Order.find({ status: 0 });
   if (orders.length > 0) {
     for (let order of orders) {
       ejs.renderFile(

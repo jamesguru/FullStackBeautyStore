@@ -18,15 +18,12 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     try {
-      await userRequest.post("/orders", {
-        products: cart.products,
-        email: user.currentUser.email,
-        userId: user.currentUser._id,
-        name: user.currentUser.name,
-        total: cart.total,
-      });
       const res = await userRequest.post("/stripe/create-checkout-session", {
         cart,
+        userId: user.currentUser._id,
+        email: user.currentUser.email,
+        name :user.currentUser.name,
+      
       });
       if (res.data.url) {
         window.location.href = res.data.url;

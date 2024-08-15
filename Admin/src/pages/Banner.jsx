@@ -56,7 +56,7 @@ const Banner = () => {
   const handleDelete = async(id) =>{
     try {
       await userRequest.delete(`/banners/${id}`);
-      window.location.relaod();
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }

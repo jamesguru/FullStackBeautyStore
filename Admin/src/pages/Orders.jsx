@@ -46,7 +46,7 @@ const Orders = () => {
       renderCell: (params) => {
         return (
           <>
-            {params.row.status === 1 ? (
+            {params.row.status === 1 || params.row.status === 0 ? (
               <FaCheckCircle className=" text-[25px] cursor-pointer mt-2" 
               onClick={() => handleUpdateOrder(params.row._id)}
               />

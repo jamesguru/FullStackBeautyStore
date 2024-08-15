@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 const run = () => {
   cron.schedule("* * * * * *", async () => {
     sendDeliveredOrder();
-    //sendPromotionEmail();
+    sendPromotionEmail();
     //sendWelcomeEmail();
     //sendPendingOrderEmail();
   });

@@ -14,10 +14,10 @@ const createBanner = asyncHandler(async (req, res) => {
 });
 
 
-//DELETE ORDER
-const deleteBanner = asyncHandler(async () => {
+//DELETE BANNER
+const deleteBanner = asyncHandler(async (req,res) => {
     const banner = await Banner.findByIdAndDelete(req.params.id);
-    if (!banner) {
+    if (banner) {
       res.status(400);
       throw new Error("Banner was not deleted");
     } else {
