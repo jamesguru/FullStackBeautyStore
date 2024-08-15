@@ -8,7 +8,6 @@ const NewProduct = () => {
   const [inputs, setInputs] = useState({});
   const [image, setImage] = useState("");
   const [uploading, setUploading] = useState("uploading is 0%");
-
   const [selectedOptions, setSelectedOptions] = useState({
     concern: [],
     skintype: [],

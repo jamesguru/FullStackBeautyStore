@@ -1,14 +1,28 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import {FaCheckCircle, FaCheckDouble, FaClock } from "react-icons/fa";
+import { useState } from "react";
+import { useEffect } from "react";
+import {userRequest} from "../requestMethods";
 
 const Orders = () => {
+  const [orders, setOrders] = useState([]);
+
+  const handleUpdateOrder = async(id) =>{
+    try {
+      await userRequest.put(`/orders/${id}`, {
+        "status": 2
+      })
+      window.location.reload();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const columns = [
-    { field: "id", headerName: "Order ID", width: 100 },
-    { field: "customerName", headerName: "Customer Name", width: 200 },
-    { field: "date", headerName: "Date", width: 150 },
-    { field: "amount", headerName: "Amount ($)", width: 130 },
-    { field: "total", headerName: "Total ($)", width: 130 },
+    { field: "_id", headerName: "Order ID", width: 100 },
+    { field: "name", headerName: "Customer Name", width: 200 },
+    { field: "email", headerName: "Customer Email", width: 150 },
     {
       field: "status",
       headerName: "Status",
@@ -16,7 +30,7 @@ const Orders = () => {
       renderCell: (params) => {
         return (
           <>
-            {params.row.status === "Pending" ? (
+            {params.row.status === 0 || params.row.status === 1 ? (
               <FaClock className="text-yellow-500 text-[25px] cursor-pointer mt-2" />
             ) : (
               <FaCheckDouble className="text-green-500 text-[25px]" />
@@ -32,61 +46,33 @@ const Orders = () => {
       renderCell: (params) => {
         return (
           <>
-            {params.row.status === "Pending" ? (
-              <FaCheckCircle className=" text-[25px] cursor-pointer mt-2" />
+            {params.row.status === 1 ? (
+              <FaCheckCircle className=" text-[25px] cursor-pointer mt-2" 
+              onClick={() => handleUpdateOrder(params.row._id)}
+              />
             ) : (
              ""
             )}
           </>
         );
       },
-    },
-    
+    },   
   ];
 
-  const rows = [
-    {
-      id: 1,
-      customerName: "John Doe",
-      date: "2024-07-01",
-      amount: 59.99,
-      total: 59.99,
-      status: "Delivered",
-    },
-    {
-      id: 2,
-      customerName: "Jane Smith",
-      date: "2024-07-03",
-      amount: 45.49,
-      total: 45.49,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      customerName: "Michael Brown",
-      date: "2024-07-05",
-      amount: 82.75,
-      total: 82.75,
-      status: "Delivered",
-    },
-    {
-      id: 4,
-      customerName: "Emily White",
-      date: "2024-07-07",
-      amount: 33.99,
-      total: 33.99,
-      status: "Pending",
-    },
-    {
-      id: 5,
-      customerName: "Daniel Johnson",
-      date: "2024-07-09",
-      amount: 25.00,
-      total: 25.00,
-      status: "Delivered",
-    },
-  ];
+useEffect(() =>{
+const getOrders = async() =>{
 
+  try {
+    const res = await userRequest.get("/orders");
+    setOrders(res.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+getOrders();
+
+},[])
+ 
   return (
     <div className="w-[70vw]">
       <div className="flex items-center justify-between m-[30px]">
@@ -98,7 +84,9 @@ const Orders = () => {
         </Link>
       </div>
       <div className="m-[30px]">
-        <DataGrid rows={rows} columns={columns} checkboxSelection />
+        <DataGrid rows={orders} columns={columns}
+        getRowId={(row) => row._id}
+        checkboxSelection />
       </div>
     </div>
   );
